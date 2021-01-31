@@ -24,6 +24,7 @@ do
     #echo ${i%.tar}
 done
 ```
++配置train，val，test数据集
 ```python
 python create_imagenet_filelist.py cfg/dataset.cfg
 ```
