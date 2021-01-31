@@ -13,17 +13,19 @@ import os
 import sys
 import random
 import pdb
-import tqdm
+#import tqdm
 
 random.seed(10)
 config = configparser.ConfigParser()
-config.read(sys.argv[1])
+config.read(sys.argv[1])# 读取配置文件dataset.cfg
 
+#得到字典options：data_dir=dataset/imagenet_nfs1，poison_generation=200，finetune=800，test=50
 options = {}
 for key, value in config['dataset'].items():
-	key, value = key.strip(), value.strip()
+	key, value = key.strip(), value.strip() #strip()去掉空格
 	options[key] = value
 
+#creat dir
 if not os.path.exists("ImageNet_data_list/poison_generation"):
 	os.makedirs("ImageNet_data_list/poison_generation")
 if not os.path.exists("ImageNet_data_list/finetune"):
@@ -31,16 +33,17 @@ if not os.path.exists("ImageNet_data_list/finetune"):
 if not os.path.exists("ImageNet_data_list/test"):
 	os.makedirs("ImageNet_data_list/test")
 
+#DATA_DIR=dataset/imagenet_nfs1
 DATA_DIR = options["data_dir"]
 
-dir_list = sorted(glob.glob(DATA_DIR + "/train/*"))
+dir_list = sorted(glob.glob(DATA_DIR + "/train/*")) #对train下的所有文件排序
 # max_list = 0
 # min_list = 1300
 
 for i, dir_name in enumerate(dir_list):
 	if i%50==0:
 		print(i)
-	filelist = sorted(glob.glob(dir_name + "/*"))
+	filelist = sorted(glob.glob(dir_name + "/*")) #glob.glob()匹配所有的符合条件的文件，并将其以list的形式返回
 	random.shuffle(filelist)
 
 	# max_list = max(max_list, len(filelist))

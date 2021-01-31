@@ -155,7 +155,7 @@ def train(model, epoch):
 	else:
 		logging.info("Using multiple source for this experiment.")
 
-	with open("data/{}/multi_source_filelist.txt".format(experimentID),"w") as f1:
+	with open("data/{}/multi_source_filelist.txt".format(experimentID), "w") as f1:
 		with open(source_wnid_list) as f2:
 			source_wnids = f2.readlines()
 			source_wnids = [s.strip() for s in source_wnids]
