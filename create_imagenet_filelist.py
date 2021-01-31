@@ -13,7 +13,7 @@ import os
 import sys
 import random
 import pdb
-import tqdm
+#import tqdm
 
 random.seed(10)
 config = configparser.ConfigParser()
@@ -33,14 +33,14 @@ if not os.path.exists("ImageNet_data_list/test"):
 
 DATA_DIR = options["data_dir"]
 
-dir_list = sorted(glob.glob(DATA_DIR + "/train/*"))
+dir_list = sorted(glob.glob(DATA_DIR + "/train/*")) #对train下的所有文件排序
 # max_list = 0
 # min_list = 1300
 
 for i, dir_name in enumerate(dir_list):
 	if i%50==0:
 		print(i)
-	filelist = sorted(glob.glob(dir_name + "/*"))
+	filelist = sorted(glob.glob(dir_name + "/*")) #glob.glob()匹配所有的符合条件的文件，并将其以list的形式返回
 	random.shuffle(filelist)
 
 	# max_list = max(max_list, len(filelist))
