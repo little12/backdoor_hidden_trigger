@@ -40,7 +40,8 @@ def normalize_fn(tensor, mean, std):
 class AlexNet(nn.Module):
 
     def __init__(self, num_classes=1000):
-        super(AlexNet, self).__init__()
+        super(AlexNet, self).__init__() #官方步骤
+
         self.features = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2),
             nn.ReLU(inplace=True),
